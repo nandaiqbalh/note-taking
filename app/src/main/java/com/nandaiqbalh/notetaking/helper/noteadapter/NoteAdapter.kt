@@ -34,8 +34,7 @@ class NoteAdapter(private val listener: NoteItemClickListener) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        val binding =
-            RowItemNotesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = RowItemNotesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NoteViewHolder(binding, listener)
     }
 
@@ -52,9 +51,7 @@ class NoteAdapter(private val listener: NoteItemClickListener) :
 
         fun bindView(item: NoteEntity) {
             with(item) {
-                binding.tvTitle.text = title
-                binding.tvDescription.text = description
-                binding.tvNoteId.text = noteId.toString()
+                binding.noteEntity = item
 
                 itemView.setOnClickListener { listener.onItemClicked(this) }
                 binding.ivEdit.setOnClickListener { listener.onEditClicked(item, adapterPosition) }

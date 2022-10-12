@@ -2,4 +2,7 @@
     <string name="app_name">Note Taking</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_desc">Masukkan deskripsi</string>
+    <string name="btn_input">Input</string>
+    <string name="hint_title">Masukkan judul</string>
 </resources>

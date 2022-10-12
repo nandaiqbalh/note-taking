@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.nandaiqbalh.notetaking.R
 import com.nandaiqbalh.notetaking.data.local.note.NoteEntity
 import com.nandaiqbalh.notetaking.databinding.FragmentNoteBinding
 import com.nandaiqbalh.notetaking.di.ServiceLocator
@@ -31,12 +33,13 @@ class NoteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentNoteBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_note, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         setRecyclerView()
         setOnClickListener()
@@ -112,9 +115,10 @@ class NoteFragment : Fragment() {
     private fun bindToAdapter(notes: List<NoteEntity>?) {
         if (notes.isNullOrEmpty()) {
             adapter.clearItems()
-            //set error
+            binding.isEmpty = true
         } else {
             adapter.setItems(notes)
+            binding.isEmpty = false
         }
     }
 
